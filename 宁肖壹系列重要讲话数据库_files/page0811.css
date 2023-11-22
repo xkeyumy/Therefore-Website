@@ -1,0 +1,11 @@
+@media (min-device-width: 320px) and (max-width: 689px), (max-device-width: 480px) {
+.sj {
+    font-size: 0;
+}
+
+div.search-bar select {
+    background-position: 93% center;
+    background-size: auto 33%;
+}
+
+}

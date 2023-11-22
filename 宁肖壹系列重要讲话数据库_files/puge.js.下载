@@ -1,0 +1,10 @@
+
+
+var arrTemp = document.querySelectorAll('.right-conn .right-item')
+for (var index = 0; index < arrTemp.length; index++) {
+  var element = arrTemp[index];
+  if (element.querySelector('.right-item-box')) {
+    element.querySelector('.right-item-box').classList.add('active');
+    element.querySelector('.left-image').src = element.querySelector('.right-item-box .mini-show').src;
+  }
+}

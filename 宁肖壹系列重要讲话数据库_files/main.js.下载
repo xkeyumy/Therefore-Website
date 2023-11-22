@@ -1,0 +1,366 @@
+function changeCard (e) {
+  var parentNode = e.parentNode
+  console.log(parentNode)
+  document.querySelectorAll('.right-item-box').forEach(element => {
+    element.classList.remove('active')
+  });
+  parentNode.querySelector('.left-image').src = e.querySelector('.mini-show').src
+  e.classList.add('active')
+}
+
+
+// rili
+-function () {
+  window.isMobile = /iPhone|Android/i.test(navigator.userAgent)
+  // 修改th宽度
+  // $('.table-dp th').attr('width', window.innerWidth / 7 + 'px')
+  var rowHTML = [
+    '<th width="111">日</th>',
+    '<th width="111">一</th>',
+    '<th width="111">二</th>',
+    '<th width="111">三</th>',
+    '<th width="111">四</th>',
+    '<th width="111">五</th>',
+    '<th width="111">六</th>'
+  ]
+
+  rowHTML = rowHTML.join('').replace(/(111)/g, window.innerWidth / 7 + 'px')
+
+  // $('#row1').html(rowHTML)
+  $('.table-dp td').css('width', parseInt(window.innerWidth / 7))
+  var $fixedContentWrap = $('.fixed-content-wrap')
+
+  function requestData(dateStr) {
+    $('.news_wrap').html('');
+    var date01 = new Date();
+    var strDate = date01.getTime();
+    $.ajax({
+      url: 'http://cpc.people.com.cn/data/xjp/' + dateStr + '.json?' + strDate + '',
+      // url: '/img/MAIN/2020/12/120681/json/20200224.json',
+      datatype: 'json',
+      success: function (data) {
+        // console.log('请求到数据: ', data)
+        renderNewsList(data);
+        if (window.isMobile) {
+          // 移动端渲染到另外一个层级上
+          setTimeout(function () {
+            $fixedContentWrap.addClass('active').show()
+          }, 100)
+        } else {
+
+        }
+      },
+      error: function (e) {
+        renderNewsList('');
+      }
+    })
+  }
+
+  $('.arrow-back').click(function () {
+    $fixedContentWrap.removeClass('active')
+
+  })
+
+  function renderNewsList(news) {
+    $('.titu').hide();
+    var htmlStr = '';
+    var imgStr;
+    if ($.isArray(news) && news.length > 0) {
+      htmlStr += '<ul>';
+      $(news).each(function (index, obj) {
+        imgStr = obj.image_url ? '<img src="' + obj.image_url + '" width="354" />' : '';
+        var dateHTML = obj.input_date ? '<div class="date-from-json">' + obj.input_date + '</div>' : ''
+        if (!window.isMobile) {
+          dateHTML = ''
+        }
+        htmlStr += '<li><h2><a href="'
+          + obj.url + '" target="_blank">'
+          + obj.title + '</a></h2>'
+          + imgStr
+          + '<p><a href="' + obj.url + '" target="_blank">'
+          + obj.summary + '</a></p>'
+          + dateHTML
+          + '</li>'
+      })
+      htmlStr += '</ul>';
+      console.log('生成的HTML是:' + htmlStr)
+    }
+
+    if (htmlStr == '') {
+      htmlStr = '<div class="no_news">今日无相关报道</div>';
+    }
+    $('.news_wrap').html(htmlStr).show();
+  }
+
+  // 获取所有的年月自动生成表格
+  // 如果在 2021之上，则
+  var $allDates = $('.list-switch-date li')
+  $allDates.last().show().siblings().hide()
+  var $tempTable = $('#tempTable')
+  var $tableWrap = $('.calendar-list-wrap .swiper-wrapper')
+  var $allTds = $('#tempTable tbody td')
+  var todayDate = new Date()
+  var this_year = todayDate.getFullYear()
+  var this_month = todayDate.getMonth() + 1
+  var this_today = todayDate.getDate()
+  var year = this_year
+  var month = this_month
+  var tdDay = todayDate.getDate()
+
+  var addNewYear = function () {
+    if (this_year > 2020) {
+      for (var i = 1; i <= this_year - 2020; i++) {
+        $('.select-year').prepend('<option value="year1">year2</option>'.replace('year1', 2020 + i).replace('year2', 2020 + i))
+      }
+    }
+  }
+
+
+
+  addNewYear()
+
+  var selectThis = function () {
+    $('.select-year option').each(function () {
+      if (this.value == this_year) {
+        this.selected = true
+      } else {
+        this.selectedchecked = false
+      }
+    })
+    $('.select-month option').each(function () {
+      if (this.value == this_month) {
+        this.selected = true
+      } else {
+        this.selected = false
+      }
+    })
+  }
+
+  selectThis()
+
+  var add0 = function (num) {
+    num = num - 0
+    return num < 10 ? '0' + num : num
+  }
+  var getDaysInMonth = function (year, monthIndex) {
+    var days = {
+      no: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      yes: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    }
+    var res = days.no[monthIndex]
+    if (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) {
+      res = days.yes[monthIndex]
+    }
+    return res
+  }
+  // $tableWrap.html('')
+
+  var genTd = function () {
+    var firstDay = new Date(year + '/' + add0(month) + '/01')
+    // 获取当月第一天星期几，星期天是0；星期N，就是从第 N个表格开始!
+    var day = firstDay.getDay()
+
+    var daysInThatMonth = getDaysInMonth(year, month - 1)
+    // 所有的 7 * 6 = 42个td
+    var addTdCount = 0
+    // index索引是 0-41
+    $allTds.each(function (index, item) {
+      // 第一行，从第 day个开始，星期几
+      var link = 'http://cpc.people.com.cn/GB/64162/435107/index.html?date='
+      link += year + '' + add0(month) + '' + add0(addTdCount + 1)
+      if (index >= day && addTdCount < daysInThatMonth) {
+        item.innerHTML = '<span  id="@@">&</span>'.replace('$', link).replace('&', addTdCount + 1).replace('@@', 'day' + (addTdCount + 1))
+        // 当年当月
+
+        if (year == this_year && month == this_month) {
+          if (addTdCount + 1 == this_today) {
+            item.setAttribute('class', 'active')
+          } else if (addTdCount + 1 > this_today) {
+            item.setAttribute('class', 'disabled')
+            console.log('日期太大')
+          } else {
+            item.setAttribute('class', '')
+          }
+          item.innerHTML = '<span id="@@">&</span>'.replace('$', link).replace('&', addTdCount + 1).replace('@@', 'day' + (addTdCount + 1))
+        } else {
+          item.setAttribute('class', '')
+        }
+        addTdCount++
+        // console.log('生成HTML')
+      } else {
+        item.innerHTML = ''
+      }
+    })
+  }
+
+  
+
+  var updateTable = function () {
+    $allTds.removeClass('active disbled')
+    genTd()
+  }
+
+  var checkSelectOptionValid = function () {
+    if (year == this_year) {
+      $('.select-month option').each(function () {
+        if (this.value > this_month) {
+          this.disabled = true
+        } else {
+          this.disabled = false
+        }
+      })
+    } else {
+      $('.select-month option').each(function () {
+        this.disabled = false
+      })
+    }
+  }
+
+
+                      genTd()
+                      checkSelectOptionValid()
+
+  var updateSelect = function () {
+    $('.select-year').val(year)
+    $('.select-month').val(month)
+  }
+
+  $('.select-year').on('input change', function () {
+    year = parseInt($(this).val())
+    updateTable()
+    checkSelectOptionValid()
+    // console.log('值改变1', this.value)
+  })
+
+  $('.select-month').on('input change', function () {
+    month = parseInt($(this).val())
+    updateTable()
+    // console.log('值改变2', this.value)
+  })
+
+  var $allTds = $('.table-dp td')
+  $allTds.click(function () {
+    var $span = $(this).find('span')
+    if (!$(this).hasClass('disabled') && $span.length) {
+      $allTds.removeClass('active')
+      $(this).addClass('active')
+      requestData(year + '' + add0(month) + add0($span.html()))
+    }
+  })
+
+
+  // 默认选中某一天
+  var selectDateAt = function (dataStr) {
+    var dateParam = dataStr || window.location.href.split('=')[1] || (this_year + '' + add0(this_month) + this_today)
+
+    if (dateParam.length === 8) {
+      year = parseInt(dateParam.slice(0, 4))
+      console.log('选中日期是', year)
+
+      $('.select-year').val(year)
+      month = parseInt(dateParam.slice(4, 6))
+      $('.select-month').val(month - 0)
+      genTd()
+      tdDay = parseInt(dateParam.slice(6, 8))
+
+      // URL有date才获取数据
+      if (/date=\d{6}/.test(location.href)) {
+        requestData(year + '' + add0(month) + add0(tdDay))
+      }
+
+
+      $allTds.removeClass('active')
+      $('#day' + tdDay).parent().addClass('active')
+      // 检查月份是否可用
+      checkSelectOptionValid()
+    }
+  }
+
+  selectDateAt()
+
+  // 给年月增加 汉字
+  // if (window.isMobile) {
+
+  // }
+
+  $('.select-year option').each(function () {
+    $(this).html($(this).html() + '年')
+  })
+  $('.select-month option').each(function () {
+    $(this).html($(this).html() + '月')
+  })
+
+
+  // 左右箭头切换
+  var allYears = Array.prototype.slice.call($('.select-year option').map(function () {
+    return this.value
+  }))
+
+
+
+  console.log('所有的值是', allYears)
+  var getNextYear = function () {
+    var nextYear = parseInt(year) + 1 + ''
+    console.log('下一年是', nextYear)
+    if (allYears.indexOf(nextYear) > -1) {
+      return nextYear
+    }
+    return ''
+  }
+
+  var getPrevYear = function () {
+    var prevYear = year - 1 + ''
+    if (allYears.indexOf(prevYear) > -1) {
+      return prevYear
+    }
+    return ''
+  }
+
+  var getNextMonth = function () {
+    if (month < 12) {
+      if (year == this_year && parseInt(month) + 1 > this_month) {
+        console.log('月份超了')
+      } else {
+        month = parseInt(month) + 1
+        updateTable()
+        updateSelect()
+      }
+
+    } else {
+      if (getNextYear()) {
+        month = 1
+        year = getNextYear()
+        console.log('年份是', year)
+        updateTable()
+        updateSelect()
+      }
+    }
+  }
+
+  var getPrevMonth = function () {
+    if (month > 1) {
+      month = parseInt(month) - 1
+      updateTable()
+      updateSelect()
+    } else {
+      if (getPrevYear()) {
+        month = 12
+        year = getPrevYear()
+        console.log('年份是', year)
+        updateTable()
+        updateSelect()
+      }
+    }
+  }
+
+
+
+  $('.arrow-right1').click(function () {
+    getNextMonth()
+  })
+
+  $('.arrow-left1').click(function () {
+    getPrevMonth()
+  })
+
+}();
