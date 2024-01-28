@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Therefore·404</title>
+    <title>Therefore·于是 | 渝四</title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png">
 
     <!-- Bootstrap core CSS -->
@@ -68,7 +68,8 @@
                     <!-- ***** Serach Start ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li class="scroll-to-section"><a href="index.html">返回首页&nbsp;<i class="fa fa-home"></i></a></li>
+                      <li class="scroll-to-section"><a href="#video" class="active">视频中心</a></li>
+                      <li class="scroll-to-section"><a href="index.html">返回首页</a></li>
                   </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -81,20 +82,29 @@
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="main-banner" id="top">
+  <div class="main-banner" id="video">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
             <div class="item item-100">
-              <div class="section-thanks">
-                <h7>404 Page Not Found</i></h7>
-                <br><br>
-                <h8>UH!OH!你要找的网页飞走了~</h8>
+              <div class="header-text">
+                <span class="category">特辑-八下开学家长会暖场</span>
                 <br>
-                <div class="buttons">
-                  <div class="main-button">
-                    <a href="index.html">返回首页&nbsp;<i class="fa fa-home"></i></a>
-                  </div>
+                <div id="player"></div>
+                <script src="//player.polyv.net/script/player.js"></script>
+                <script>
+                var player = polyvPlayer({
+                  wrap: '#player',
+                  width: 560,
+                  height: 315,
+                  vid: 'b1d203ea5e4d6e11035583554699982f_b',
+                });
+                </script>
+                <br>
+                <br>视频播放由第三方提供，清晰度有损。观看高清视频请下载源文件。
+                <br>
+                <div class="main-button">
+                  <a href="https://pan.baidu.com/s/1Jhhyld7z89d-CNs5sYqyGA?pwd=zi9f">下载视频<i class="fa fa-download"></i></a>
                 </div>
               </div>
             </div>
