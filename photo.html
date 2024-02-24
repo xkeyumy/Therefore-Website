@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <meta name="msvalidate.01" content="276CF2D90957ECF7FDD5890E737CEDA0" />
+    <meta name="baidu-site-verification" content="codeva-z4K3aKI89X" />
+    <title>Therefore·于是 | 渝四</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <style>
+      @font-face {
+        font-family: "65";
+        src: url("assets/webfonts/65.woff2") format("woff2"),
+             url("assets/webfonts/65.woff") format("woff");
+      }
+    </style>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-scholar.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css"/>
+
+  </head>
+
+<body>
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1>Therefore</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Search" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">首页</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+  <section class="section courses" id="daojishi" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Graduation Countdown</h6>
+            <h2>距离我们毕业还有</h2>
+            <h1 id="h1"></h1>
+            <script>
+              window.onload=function starttime(){
+                      time(h1,'2024/6/15');
+                      ptimer = setTimeout(starttime,1000); // 添加计时器
+              }
+                  function time(obj,futimg){
+                      var nowtime = new Date().getTime(); // 现在时间转换为时间戳
+                      var futruetime =  new Date(futimg).getTime(); // 未来时间转换为时间戳
+                      var msec = futruetime-nowtime; // 毫秒 未来时间-现在时间
+                      var time = (msec/1000);  // 毫秒/1000
+                      var day = parseInt(time/86400); // 天  24*60*60*1000
+                      var hour = parseInt(time/3600)-24*day;    // 小时 60*60 总小时数-过去的小时数=现在的小时数
+                      var minute = parseInt(time%3600/60); // 分 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
+                      var second = parseInt(time%60);  // 以60秒为一整份 取余 剩下秒数
+                      obj.innerHTML=day+"天"+hour+"小时"+minute+"分"+second+"秒"
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="section about-us" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  2021·入校合照
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <a href="https://www.cqny202404.top/assets/images/video11.webp"><img src="assets/images/video11.webp" alt="2021入校合照"></a>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  关于2024寒假作业安排
+                </button>
+              </h2>
+              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>请查看寒假作业安排表。</strong>
+                  <br>
+                  <br>
+                  <div class="main-button">
+                    <a href="homework.html">附件:2024寒假作业安排</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                 关于2024寒假自习安排
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  寒假自习将在<strong>1月22日-1月27日、1月29日-2月3日、2月4日-2月6日</strong>。分3段开展。2月5日左右将举行模拟检测。
+                </div>
+              </div>
+            </div>
+<!--
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  初三年级大型活动安排
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  正常情况下，初三年级将会开展<strong>2023年校运动会(已结束)、2023年元旦晚会、2023年离队入团仪式等大型活动。</strong>其余小型活动按照各班安排为准。大型活动举行通知按照班主任信息为准，不排除有不可抗因素导致活动取消。为尽量减少大型活动筹备时间，我们公布了今年大型活动的轮播歌曲:
+                  <br>
+                  <br>
+                  <div class="main-button">
+                    <a href="file03.html">附件:主题活动循播曲</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  离队入团仪式活动安排
+                </button>
+              </h2>
+              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  该活动为学校团支部组织的大型活动，<strong>活动由南渝中学校团委负责。</strong>我班团员为:熊柯宇(团支书)、陈宇可、杨文熙、甘蕾莙、甘欣蕾、李诗涵、李可一、李思颖、黄麒瑞、毛瀚民、向喆劼、宁肖壹。具体情况由校团支部及班主任通知为主。
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                  半期家长会座位表
+                </button>
+              </h2>
+              <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  欢迎各位家长参与本次家长会!<strong>请查看座位表。</strong>
+                  <br>
+                  <br>
+                  <div class="main-button">
+                    <a href="file04.html">附件:家长会座位表</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>Class 4 Impression Book</h6>
+            <h2>四班印象册</h2>
+            <p><strong>四班印象册收录着四班大事记的精彩抓拍。点击图片查看高清大图。</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright &copy; 2024.Therefore All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/counter.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>
